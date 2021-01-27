@@ -24,16 +24,15 @@ let timerCount = 0;
 let startTime;
 let currentTime;
 let activeHour;
-let topDivPercent = 0.0;
-let btmDivPercent = 0.0;
-let needlePositions = [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60];
-let tdPercents = [0, 8.3, 16.6, 24.9, 33.2, 41.5, 49.8, 58.1, 66.4, 74.7, 83, 91.3, 100];
-var bdPercents = [10, 91.7, 83.4, 75.1, 66.8, 58.5, 50.2, 41.9, 33.6, 25.3, 17, 8.5, 0];
+let currentDayEl;
+let currentTimeEl;
 
 window.onload = function() {
 
     startTime = moment();
     currentTime = moment();
+    currentDayEl = document.querySelector("#currentDay");
+    currentTimeEl = document.querySelector("#currentTime");
     startPlannerTime();
 }
 
@@ -43,7 +42,8 @@ function startPlannerTime() {
         currentTime.add(1, "seconds");
 
         //update live timer in header
-
+        currentDayEl.textContent = currentTime.format("MM/DD/YYYY");
+        currentTimeEl.textContent = currentTime.format("hh:mm:ss A");
 
         //if currentTime is hr:00:00, updateHour
         if (currentTime.get("minutes") === 2 && currentTime.get("seconds") === 0) {
