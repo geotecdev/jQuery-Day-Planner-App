@@ -34,6 +34,8 @@ window.onload = function() {
 
                 //edit logic
                 if (selectedTextArea.disabled === true) {
+                    //change button content to save
+                    this.textContent = "Save";
                     //enable text area and set cursor
                     selectedTextArea.disabled = false;
                     selectedTextArea.focus();
@@ -44,8 +46,11 @@ window.onload = function() {
                 else
                 {
                     //disable text area and set memo changes to local storage
-                    selectedTextArea.disabled = true;
+                    selectedTextArea.disabled = true;                    
                     let textAreaNumber = parseInt(selectedTextArea.getAttribute("value"));
+                    //reset button text to default
+                    this.textContent = "Edit";
+                    //update memo value of current obj
                     plannerData[textAreaNumber - 8].memo = selectedTextArea.value;
                     localStorage.setItem("plannerData", JSON.stringify(plannerData));                    
                     alert("current edits to planner note saved");
