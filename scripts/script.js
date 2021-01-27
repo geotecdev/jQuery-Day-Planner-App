@@ -28,15 +28,29 @@ let currentDayEl;
 let currentTimeEl;
 let activeBlock;
 let timeBlockEls = [];
+let timeBlockBtns = [];
 
 window.onload = function() {
 
+    //set js moment variables
     startTime = moment();
     currentTime = moment();
+
+    //grab elements
     currentDayEl = document.querySelector("#currentDay");
     currentTimeEl = document.querySelector("#currentTime");
     timeBlockEls = document.querySelectorAll(".time-block");
-    SetBlockColors();
+    timeBlockBtns = document.querySelectorAll(".saveBtn");
+
+    //add event listeners to saveBtns
+    for (let i = 0; i < timeBlockBtns.length; i++) {
+        console.log(i);
+        timeBlockBtns[i].addEventListener("click", function(btn) {
+            console.log(this.getAttribute("value"));
+        });
+    }
+
+    setTimeBlocks();
     startPlannerTime();
 }
 
@@ -51,7 +65,7 @@ function startPlannerTime() {
 
         //if currentTime is hr:00:00, updateHour
         if (currentTime.get("minutes") === 2 && currentTime.get("seconds") === 0) {
-            SetBlockColors();
+            setTimeBlocks();
         }
 
         //if currentTime is hr:[second is divisible by 5], move needle
@@ -61,7 +75,7 @@ function startPlannerTime() {
 
     }, 1000)};
 
-function SetBlockColors() {
+function setTimeBlocks() {
     activeHour = moment().format("HH");
     for (let i = 0; i < timeBlockEls.length; i++) {
         let timeBlockEl = timeBlockEls[i];
@@ -78,4 +92,8 @@ function SetBlockColors() {
             timeBlockEl.classList = ("p-2 flex-row time-block future");
         }
     }
-}    
+}
+
+function lockAndSaveTextArea(btn) {
+
+}
