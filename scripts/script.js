@@ -26,6 +26,8 @@ let currentTime;
 let activeHour;
 let currentDayEl;
 let currentTimeEl;
+let activeBlock;
+let timeBlockEls = [];
 
 window.onload = function() {
 
@@ -33,6 +35,8 @@ window.onload = function() {
     currentTime = moment();
     currentDayEl = document.querySelector("#currentDay");
     currentTimeEl = document.querySelector("#currentTime");
+    timeBlockEls = document.querySelectorAll(".time-block");
+    SetBlockColors();
     startPlannerTime();
 }
 
@@ -47,12 +51,31 @@ function startPlannerTime() {
 
         //if currentTime is hr:00:00, updateHour
         if (currentTime.get("minutes") === 2 && currentTime.get("seconds") === 0) {
-            console.log("new hour!");
+            SetBlockColors();
         }
 
         //if currentTime is hr:[second is divisible by 5], move needle
         if (currentTime.get("seconds") % 5 === 0) {
-            console.log(currentTime.toISOString());
+            //console.log(currentTime.toISOString());
         }
 
     }, 1000)};
+
+function SetBlockColors() {
+    activeHour = moment().format("HH");
+    for (let i = 0; i < timeBlockEls.length; i++) {
+        let timeBlockEl = timeBlockEls[i];
+        let blockValue = parseInt(timeBlockEl.getAttribute("value"));
+
+        if (blockValue < activeHour) {
+            timeBlockEl.classList = "p-2 flex-row time-block past";
+        }
+        else if (blockValue >= activeHour) {
+            timeBlockEl.classList = "p-2 flex-row time-block present";
+        }
+        
+        if (blockValue > activeHour) {
+            timeBlockEl.classList = ("p-2 flex-row time-block future");
+        }
+    }
+}    
