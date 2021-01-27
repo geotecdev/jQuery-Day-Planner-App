@@ -35,6 +35,10 @@ textarea{
   margin: 5px;  
 }
 
+.selectedTimeBlock {
+  min-height: 150px;
+}
+
 .row {
   position: absolute;
   white-space: pre-wrap;
