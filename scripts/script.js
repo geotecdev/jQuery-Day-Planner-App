@@ -5,6 +5,7 @@ let currentTime;
 let activeHour;
 let currentDayEl;
 let currentTimeEl;
+//let needleEl;
 let activeBlock;
 let timeBlockEls = [];
 let timeBlockBtns = [];
@@ -22,17 +23,18 @@ window.onload = function() {
     currentTimeEl = document.querySelector("#currentTime");
     timeBlockEls = document.querySelectorAll(".time-block");
     timeBlockBtns = document.querySelectorAll(".saveBtn");
-    textAreas = document.querySelectorAll(".time-block textarea")
+    textAreas = document.querySelectorAll(".time-block textarea");
+    //needleEl = document.querySelector(".timeNeedle");
 
     //add event listeners to saveBtns
     for (let i = 0; i < timeBlockBtns.length; i++) {
-        console.log(i);
         timeBlockBtns[i].addEventListener("click", function() {
             let selectedTextArea = this.previousElementSibling;
             if (selectedTextArea != null) {
 
                 //edit logic
                 if (selectedTextArea.disabled === true) {
+                    //enable text area and set cursor
                     selectedTextArea.disabled = false;
                     selectedTextArea.focus();
                     selectedTextArea.select();
@@ -41,12 +43,11 @@ window.onload = function() {
                 //save logic
                 else
                 {
+                    //disable text area and set memo changes to local storage
                     selectedTextArea.disabled = true;
-                    let taNumber = parseInt(selectedTextArea.getAttribute("value"));
-                    plannerData[taNumber - 8].memo = selectedTextArea.value;
-                    alert(plannerData[taNumber - 8].hour + ";" + plannerData[taNumber - 8].memo);
-                    localStorage.setItem("plannerData", JSON.stringify(plannerData));
-                    
+                    let textAreaNumber = parseInt(selectedTextArea.getAttribute("value"));
+                    plannerData[textAreaNumber - 8].memo = selectedTextArea.value;
+                    localStorage.setItem("plannerData", JSON.stringify(plannerData));                    
                     alert("current edits to planner note saved");
                 }
                 
@@ -86,13 +87,13 @@ function startPlannerTime() {
         currentTimeEl.textContent = currentTime.format("hh:mm:ss A");
 
         //if currentTime is hr:00:00, updateHour
-        if (currentTime.get("minutes") === 2 && currentTime.get("seconds") === 0) {
+        if (currentTime.get("minutes") === 0 && currentTime.get("seconds") === 0) {
             setTimeBlocks();
         }
 
-        //if currentTime is hr:[second is divisible by 5], move needle
-        if (currentTime.get("seconds") % 5 === 0) {
-            //console.log(currentTime.toISOString());
+        //if currentTime is hr:[minute is divisible by 5], run periodic time block reset
+        if (currentTime.get("minutes") % 5 === 0) {
+            setTimeBlocks();
         }
 
     }, 1000)};
@@ -108,6 +109,7 @@ function setTimeBlocks() {
         let ta = textAreas[blockValue - 8];
         ta.textContent = plannerDataObj.memo;
 
+        //format bolck based on current time
         if (blockValue < activeHour) {
             timeBlockEl.classList = "p-2 flex-row time-block past";
         }
@@ -119,8 +121,4 @@ function setTimeBlocks() {
             timeBlockEl.classList = ("p-2 flex-row time-block future");
         }
     }
-}
-
-function lockAndSaveTextArea(btn) {
-
 }
