@@ -1,61 +1,154 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="./testStyles.css">
-        <script src="./testScript.js"></script>
-        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-        <link
-          rel="stylesheet"
-          href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        />
-        <link
-          rel="stylesheet"
-          href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-          integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
-          crossorigin="anonymous"
-        />
-        <link
-          href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap"
-          rel="stylesheet"
-        />
-        <link rel="stylesheet" href="style.css" />
-        <title>Work Day Scheduler</title>
-      </head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href=".\style.css">
+    <script src=".\testScript.js"></script>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>Work Day Scheduler</title>
+  </head>
+
+
+  <body>
     <header class="jumbotron">
-        <h1 class="display-3">Work Day Scheduler</h1>
-        <p class="lead">A simple calendar app for scheduling your work day</p>
-        <p id="currentDay" class="lead"></p>
+      <h1 class="display-3">Work Day Scheduler</h1>
+      <p class="lead">A simple calendar app for scheduling your work day</p>
+      <p id="currentDay" class="lead"></p>
+      <p id="currentTime" class="lead"></p>
+      <!-- <button id="clearBtn" class="primary">Clear Planner</button> -->
     </header>
+    <div class="container">
 
-    <div class="container col-md-8">
+        <div class="d-flex flex-column mb-3">
 
-        
-        <figure value="8" class="row time-block future">
-            <div class="timeNeedle"></div>
-            <aside class="hour">8:00 AM</aside>
-            <!-- <div class="past topDiv"></div>
-            <div class="present btmDiv"></div> -->
-            <!-- <figcaption class="plannerNote textarea">         -->
-            </figcaption>
-            <button class="saveBtn">
-                <span class="glyphicon glyphicon-edit"></span>
-            </button>
-        </figure>
-        
+            <div value="8" class="p-2 flex-row time-block past">
+                <div class="hour leftEl">8:00 AM</div>
+                <textarea value="8" class="centerEl" disabled="true"></textarea>
+                <button value="8" class="saveBtn rightEl">
+                    Edit
+                </button>
+            </div>
 
-        <figure class="time-block">
-            <aside class="hour">8:00 AM</aside>
-            <div class="past topDiv"></div>
-            <div class="present btmDiv"></div>
-        </figure>
+            <div value="9" class="p-2 time-block past ">
+                <div class="hour leftEl">9:00 AM</div>
+                <textarea value="9" class="centerEl" disabled="true"></textarea>
+                <button value="9" class="saveBtn rightEl">
+                    Edit
+                </button>
+            </div>
 
-        <figure class="time-block">
+            <div value="10" class="p-2 time-block past">
+                <div class="hour leftEl">10:00 AM</div>
+                <textarea value="10" class="centerEl" disabled="true"></textarea>
+                <button value="10" class="saveBtn rightEl">
+                    Edit
+                </button>
+            </div>
 
-        </figure>
+            <div value="11" class="p-2 time-block past">
+                <div class="hour leftEl">11:00 AM</div>
+                <textarea value="11" class="centerEl" disabled="true"></textarea>
+                <button value="11" class="saveBtn rightEl">
+                    Edit
+                </button>
+            </div>
+
+            <div value="12" class="p-2 time-block past">
+                <div class="hour leftEl">12:00 AM</div>
+                <textarea value="12" class="centerEl" disabled="true"></textarea>
+                <button value="12" class="saveBtn rightEl">
+                    Edit
+                </button>
+            </div>
+
+            <div value="13" class="p-2 time-block past">
+                <div class="hour leftEl">1:00 PM</div>
+                <textarea value="13" class="centerEl" disabled="true"></textarea>
+                <button value="13" class="saveBtn rightEl">
+                    Edit
+                </button>
+            </div>
+
+            <div value="14" class="p-2 time-block past">
+                <div class="hour leftEl">2:00 PM</div>
+                <textarea value="14" class="centerEl" disabled="true"></textarea>
+                <button value="14" class="saveBtn rightEl">
+                    Edit
+                </button>
+            </div>
+
+            <div value="15" class="p-2 time-block past">
+                <div class="hour leftEl">3:00 PM</div>
+                <textarea value="15" class="centerEl" disabled="true"></textarea>
+                <button value="15" class="saveBtn rightEl">
+                    Edit
+                </button>
+            </div>
+
+            <div value="16" class="p-2 time-block past">
+                <div class="hour leftEl">4:00 PM</div>
+                <textarea value="16" class="centerEl" disabled="true"></textarea>
+                <button value="16" class="saveBtn rightEl">
+                    Edit
+                </button>
+            </div>
+
+            <div value="17" class="p-2 time-block past">
+                <div class="hour leftEl">5:00 PM</div>
+                <textarea value="17" class="centerEl" disabled="true"></textarea>
+                <button value="17" class="saveBtn rightEl">
+                    Edit
+                </button>
+            </div>
+
+            <div value="18" class="p-2 time-block past">
+                <div class="hour leftEl">6:00 PM</div>
+                <textarea value="18" class="centerEl" disabled="true"></textarea>
+                <button value="18" class="saveBtn rightEl">
+                    Edit
+                </button>
+            </div>
+
+            <div value="19" class="p-2 time-block past">
+                <div class="hour leftEl">7:00 PM</div>
+                <textarea value="19" class="centerEl" disabled="true"></textarea>
+                <button value="19" class="saveBtn rightEl">
+                    Edit
+                </button>
+            </div>
+
+            <div value="20" class="p-2 time-block past">
+                <div class="hour leftEl">8:00 PM</div>
+                <textarea value="20" class="centerEl" disabled="true"></textarea>
+                <button value="20" class="saveBtn rightEl">
+                    Edit
+                </button>
+            </div>    
+        </div>
     </div>
-  
-</body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+  </body>
 </html>
+
+
+<!-- 
+<p>I will display &#9658;</p> -->
+
+<!-- <figure class="row, hour"><div class="hour">8</div></figure> -->

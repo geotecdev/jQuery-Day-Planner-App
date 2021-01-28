@@ -19,11 +19,11 @@ window.onload = function() {
     currentTime = moment();
 
     //grab elements
-    currentDayEl = document.querySelector("#currentDay");
-    currentTimeEl = document.querySelector("#currentTime");
-    timeBlockEls = document.querySelectorAll(".time-block");
-    timeBlockBtns = document.querySelectorAll(".saveBtn");
-    textAreas = document.querySelectorAll(".time-block textarea");
+    currentDayEl = $("#currentDay");
+    currentTimeEl = $("#currentTime");
+    timeBlockEls = $(".time-block");
+    timeBlockBtns = $(".saveBtn");
+    textAreas = $(".time-block textarea");
     //needleEl = document.querySelector(".timeNeedle");
 
     //add event listeners to saveBtns
@@ -88,8 +88,8 @@ function startPlannerTime() {
         currentTime.add(1, "seconds");
 
         //update live timer in header
-        currentDayEl.textContent = currentTime.format("MM/DD/YYYY");
-        currentTimeEl.textContent = currentTime.format("hh:mm:ss A");
+        currentDayEl.text(currentTime.format("MM/DD/YYYY"));
+        currentTimeEl.text(currentTime.format("hh:mm:ss A"));
 
         //if currentTime is hr:00:00, updateHour
         if (currentTime.get("minutes") === 0 && currentTime.get("seconds") === 0) {
@@ -108,7 +108,6 @@ function setTimeBlocks() {
     for (let i = 0; i < timeBlockEls.length; i++) {
         let timeBlockEl = timeBlockEls[i];
         let blockValue = parseInt(timeBlockEl.getAttribute("value"));
-
         //set memo from local storage
         let plannerDataObj = plannerData[blockValue - 8];
         let ta = textAreas[blockValue - 8];
