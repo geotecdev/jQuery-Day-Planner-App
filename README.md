@@ -17,7 +17,7 @@ https://github.com/geotecdev/jQuery-Day-Planner-App
 main page appearance (screenshot)
 A static image of the completed landing page can be found at the link below
 
-![day planner demo](./images/Screenshot.png)
+![day planner demo](./images/screenshot.png)
 
 #Licence MIT License
 
